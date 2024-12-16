@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Dialog, DialogActions, Grid, Box } from "@mui/material";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ function App() {
         Explore
       </Button>
 
-      <Dialog open={open} fullWidth maxWidth="md" sx={{ margin: "10px" }}>
+      <Dialog open={open} fullWidth maxWidth="xs" >
         <h2 style={styles.header}>Explore</h2>
 
         <Box sx={styles.buttonsContainer}>
@@ -41,32 +42,32 @@ function App() {
           ))}
         </Box>
 
-        <Grid container spacing={2} sx={styles.gridContainer}>
-          {/* First Grid Item */}
-          <Grid item xs={6} sx={styles.gridItem}>
-            <h4 style={styles.sectionHeader}>Top Disciplines</h4>
-            <Box>
-              {data.map((ele, index) => (
-                <h5 key={index} style={styles.itemText}>
-                  {ele}
-                </h5>
-              ))}
-            </Box>
-          </Grid>
+        <Grid container spacing={1} sx={styles.gridContainer}>
+      {/* First Grid Item */}
+      <Grid item xs={6} sx={styles.gridItem}>
+        <h4 style={styles.sectionHeader}>Top Disciplines</h4>
+        <Box>
+          {data.map((ele, index) => (
+            <h5 key={index} style={styles.itemText}>
+              {ele}
+              <ArrowForwardIcon style={styles.icon} />
+            </h5>
+          ))}
+        </Box>
+      </Grid>
 
-          {/* Second Grid Item */}
-          <Grid item xs={6} sx={styles.gridItem}>
-            <h4 style={styles.sectionHeader}>Top Sub-Disciplines</h4>
-            <Box>
-              {data.map((ele, index) => (
-                <h5 key={index} style={styles.itemText}>
-                  {ele}
-                </h5>
-              ))}
-            </Box>
-          </Grid>
-        </Grid>
-
+      {/* Second Grid Item */}
+      <Grid item xs={6} sx={styles.gridItem}>
+        <h4 style={styles.sectionHeader}>Top Sub-Disciplines</h4>
+        <Box>
+          {data.map((ele, index) => (
+            <h5 key={index} style={styles.itemText}>
+              {ele}
+            </h5>
+          ))}
+        </Box>
+      </Grid>
+    </Grid>
         <DialogActions>
           <Button onClick={closePopup} variant="contained" color="error">
             Close
@@ -84,11 +85,13 @@ const styles = {
     fontSize: "16px",
     lineHeight: "21px",
     color: "rgba(59, 63, 118, 1)",
+    marginLeft: "20px"
   },
   buttonsContainer: {
     display: "flex",
     gap: "10px",
     flexWrap: "wrap",
+    marginLeft: "20px"
   },
   buttonText: {
     background: "rgba(59, 63, 118, 1)",
@@ -104,24 +107,41 @@ const styles = {
     flexWrap: "nowrap",
     border: "1px solid grey",
     borderRadius: "10px",
-    margin: "20px",
+    marginLeft: "20px",
+    marginTop: "20px",
     textAlign: "left",
     padding: "10px",
     boxShadow: "none",
+    alignItems: 'stretch', // Ensures both grid items stretch to equal height
   },
   gridItem: {
     padding: "10px",
+    display: 'flex',
+    flexDirection: 'column', // Ensures items inside are stacked vertically
   },
   sectionHeader: {
     fontWeight: 600,
     fontSize: "12px",
     lineHeight: "15px",
     color: "rgba(106, 106, 106, 1)",
+    marginBottom: "10px", // Add some spacing below the header
   },
   itemText: {
     fontWeight: 600,
     fontSize: "12px",
     lineHeight: "15px",
+    display: "flex",
+    alignItems: "center", // Aligns text and icon vertically
+    gap: "8px", // Adds space between text and icon
+    marginBottom: "5px", // Adds spacing between items
+  },
+  icon: {
+    background: "#FF7043",
+    color: 'white',
+    borderRadius: "50px",
+    width: "10px",
+    height: "10px",
+    padding: "2px", // Optional: adds padding for a neat circle
   },
 };
 
